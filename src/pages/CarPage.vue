@@ -18,7 +18,7 @@
       <div class="car-content">
         <div class="car-header">
           <h1>{{ car.brand }} {{ car.model }}</h1>
-          <p class="price">{{ car.price }} ₸</p>
+          <p class="price">{{ car.price }} Р</p>
         </div>
 
         <div class="car-details">
