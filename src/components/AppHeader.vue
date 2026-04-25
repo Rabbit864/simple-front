@@ -11,7 +11,7 @@
         <router-link to="/">Главная</router-link>
         <router-link
             v-if="isAuthenticated"
-            to="/cars/create"
+            to="/car/create"
             class="add-button"
         >
          Добавить авто

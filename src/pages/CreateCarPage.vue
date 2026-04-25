@@ -103,12 +103,12 @@ const mileage = ref('')
 const description = ref('')
 
 const fetchBrands = async () => {
-  const response = await api.get('/brands')
+  const response = await api.get('/brand')
   brands.value = response.data
 }
 
 const fetchCities = async () => {
-  const response = await api.get('/cities')
+  const response = await api.get('/city')
   cities.value = response.data
 }
 
