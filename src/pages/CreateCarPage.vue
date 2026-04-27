@@ -3,7 +3,7 @@
     <div class="form-page-content">
       <h1>Добавить автомобиль</h1>
 
-      <form class="form">
+      <form class="form" @submit.prevent="createCar">
         <div class="form-grid">
           <select
               v-model="selectedBrand"
@@ -77,7 +77,7 @@
             class="textarea"
         ></textarea>
 
-        <button class="button">
+        <button class="button" >
           Создать объявление
         </button>
       </form>
@@ -88,6 +88,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import api from '../api/axios'
+import { useCarStore } from '../stores/carStore'
 
 const brands = ref([])
 const models = ref([])
@@ -101,6 +102,26 @@ const year = ref('')
 const price = ref('')
 const mileage = ref('')
 const description = ref('')
+
+const carStore = useCarStore()
+
+const createCar = async () => {
+  try {
+    const payload = {
+      brand: selectedBrand.value,
+      model: selectedModel.value,
+      city: selectedCity.value,
+      year: Number(year.value),
+      price: Number(price.value),
+      mileage: Number(mileage.value),
+      description: description.value,
+    }
+
+    await carStore.createCar(payload)
+  } catch (e) {
+    console.error(e)
+  }
+}
 
 const fetchBrands = async () => {
   const response = await api.get('/brand')
